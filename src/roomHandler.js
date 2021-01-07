@@ -41,6 +41,7 @@ roomHandler.run = function () {
 // A function to setup the rooms memory for use in other scripts
 function initializeMemory(room) {
     // Create an empty array entry for storing creep information
+    // TODO: Figure out why I need this and it's correpsonding loop
     room.memory.creeps = [];
     // Create an empty array entry for storing spawn information
     room.memory.spawns = [];

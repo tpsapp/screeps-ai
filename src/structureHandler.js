@@ -71,11 +71,11 @@ structureHandler.controlTowers = function (room) {
                 tower.attack(target);
             }
         } else {
-            //TODO: repair stuff and/or heal creeps
+            // TODO: repair stuff and/or heal creeps
         }
 
         // Check if the tower needs energy
-        if (tower.energy < tower.energyCapacity) {
+        if (tower.store.getFreeCapacity(RESOURCE_ENERGY) > 0) {
             // Create an artillery creep to refill the tower
             require("spawnHandler").spawnArtilery(room);
         }
@@ -143,12 +143,13 @@ function buildRoads(room, costs) {
         // Loop through the path array
         for (var i = 0; i < path.length; i++) {
             // Create a road construction site at the current position in the path
-            room.createConstructionSite(path[i].x, path[i].y, STRUCTURE_ROAD);
+            if (room.createConstructionSite(path[i].x, path[i].y, STRUCTURE_ROAD) !== OK) {
+                return;
+            }
         }
     }
 
     // Indicate to the rooms memory that the roads have been placed
-    // TODO: check that there are not too many construction sites before setting this
     room.memory.roadsBuilt = true;
 }
 

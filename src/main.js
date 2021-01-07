@@ -16,6 +16,7 @@ module.exports.loop = function () {
     roomHandler.run();
     // Run creep handler to process creep functions
     creepHandler.run();
+
     // Check if there is 5000 units in the CPU bucket
     if (Game.cpu.bucket >= 5000) {
         // Check to see if we are on a screeps.com shard
